@@ -4,7 +4,7 @@ import React from 'react';
 import './App.css';
 import Header from "./Header"
 import SideBar from './SideBar';
-
+import Feed from './Feed';
 function App() {
   return (
     <div className="app">
@@ -13,7 +13,7 @@ function App() {
      <Header/>
      <div className="app__body">
         <SideBar/>
-        {/*Feeds*/}
+        <Feed />
         {/*Widget*/}
 
      </div>
