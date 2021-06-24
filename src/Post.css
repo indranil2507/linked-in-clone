@@ -15,11 +15,31 @@
     font-size: 12px;
     color: gray;
 }
+.post__image{
+    
+    margin-top: 25px;
+    min-width: 100% !important;
+    max-height: 450px !important;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.post__statistics{
+    margin-top: 10px;
+    font-size: 16px;
+}
 
 .post__body {
     overflow-wrap: anywhere;
+    /* max-height: 450px !important; */
 }
 .post__buttons{
     display: flex;
     /* justify-content: space-evenly; */
+}
+.likeButton{
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: bold !important;
 }
