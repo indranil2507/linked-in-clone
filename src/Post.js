@@ -1,5 +1,5 @@
 import { Avatar } from '@material-ui/core'
-import React ,{useState} from 'react'
+import React ,{forwardRef,useState} from 'react'
 
 import "./Post.css"
 import InputOption from './InputOption'
@@ -7,35 +7,14 @@ import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined'
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined'
-// import {db} from './firebase'
-// import firebase from 'firebase'
-// import { useSelector } from 'react-redux'
-// import { selectUser } from './features/userSlice'
 
-function Post({id,name,description,displayUrl,message,photoUrl,likes,setLikesCount}) {
+
+const Post=forwardRef(({id,name,description,displayUrl,message,photoUrl,likes,setLikesCount},ref)=> {
     
-    // const user = useSelector(selectUser)
+    
     const [counter, setCounter] = useState(Math.floor(Math.random() * 1000) + 1);
     const [liked, setLiked] = useState(false)
-    // // console.log(counter)
-    // // const setLikes =()=>{
-    // //     setCounter((prevState)=>prevState+1);
-    // //     setLikesCount(counter)
-    // //     console.log(counter)
-    // // }
-    // const sendLike = () =>{
-    //     console.log("in funvtion")
-    //     console.log(`"`+name+`"`)
-        
-        
-
-    //     var post = db.collection('posts').doc(`"`+name+`"`);
-
-    //     // Atomically increment the population of the city by 50.
-    //     post.update({
-    //         likes: firebase.firestore.FieldValue.increment(1)
-    //     });
-    // }
+  
     const checklike=()=>{
         if(liked){
             setCounter(counter-1)
@@ -50,7 +29,7 @@ function Post({id,name,description,displayUrl,message,photoUrl,likes,setLikesCou
         
     
     return (
-        <div className="post">
+        <div ref={ref} className="post">
             <div className="post__header">
                 <Avatar src={displayUrl} >{name[0]}</Avatar>
                 <div className="post__info">
@@ -82,6 +61,7 @@ function Post({id,name,description,displayUrl,message,photoUrl,likes,setLikesCou
         </div>
     )
 }
+)
 
 export default Post
 

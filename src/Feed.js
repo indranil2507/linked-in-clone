@@ -11,6 +11,7 @@ import {db} from './firebase'
 import firebase from 'firebase'
 import { useSelector } from 'react-redux'
 import { selectUser } from './features/userSlice'
+import FlipMove from "react-flip-move"
 function Feed() {
 
     const user = useSelector(selectUser)
@@ -101,6 +102,7 @@ function Feed() {
                  }} >Click me</button> */}
                     </div>
             </div>
+            <FlipMove>
             {posts.map(({id,data:{name,description,message,photoUrl,displayUrl,likes}})=>(
                 <Post 
                 key={id}
@@ -115,6 +117,8 @@ function Feed() {
                 // // likesCount={likesCount}
                 />
     ))}
+            </FlipMove>
+          
            {/* <Post name= 'Sonny' description="this is a test" message="Wow this works"/> */}
         </div>
     )
