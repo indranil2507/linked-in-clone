@@ -7,11 +7,14 @@ import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined'
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined'
-import {db} from './firebase'
-import firebase from 'firebase'
-function Post({id,name,description,message,photoUrl,likes,setLikesCount}) {
+// import {db} from './firebase'
+// import firebase from 'firebase'
+// import { useSelector } from 'react-redux'
+// import { selectUser } from './features/userSlice'
+
+function Post({id,name,description,displayUrl,message,photoUrl,likes,setLikesCount}) {
     
-    
+    // const user = useSelector(selectUser)
     const [counter, setCounter] = useState(Math.floor(Math.random() * 1000) + 1);
     const [liked, setLiked] = useState(false)
     // // console.log(counter)
@@ -49,7 +52,7 @@ function Post({id,name,description,message,photoUrl,likes,setLikesCount}) {
     return (
         <div className="post">
             <div className="post__header">
-                <Avatar />
+                <Avatar src={displayUrl} >{name[0]}</Avatar>
                 <div className="post__info">
                     <h2>{name}</h2>
                     <p>{description}</p>

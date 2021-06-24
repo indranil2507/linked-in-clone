@@ -9,7 +9,11 @@ import EventNoteIcon from "@material-ui/icons/EventNote"
 import CalenderViewDayIcon from "@material-ui/icons/CalendarViewDay"
 import {db} from './firebase'
 import firebase from 'firebase'
+import { useSelector } from 'react-redux'
+import { selectUser } from './features/userSlice'
 function Feed() {
+
+    const user = useSelector(selectUser)
     const [input,setInput] = useState('')
     const [photoUrl,setPhotoUrl] = useState('')
     const [posts,setPosts] = useState([])
@@ -36,9 +40,10 @@ function Feed() {
     console.log(likesCount)
     const sendPost = (e) =>{
         e.preventDefault();
-       var postslist = db.collection('posts').add({
-            name: 'Indranil Saha Roy',
-            description: 'this is a test',
+        db.collection('posts').add({
+            name: user.displayName,
+            description: user.email,
+            displayUrl:user.photoUrL,
             message: input,
             photoUrl: photoUrl,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -96,11 +101,12 @@ function Feed() {
                  }} >Click me</button> */}
                     </div>
             </div>
-            {posts.map(({id,data:{name,description,message,photoUrl,likes}})=>(
+            {posts.map(({id,data:{name,description,message,photoUrl,displayUrl,likes}})=>(
                 <Post 
                 key={id}
                 name={name}
                 description={description}
+                displayUrl={displayUrl}
                 message={message}
                 photoUrl={photoUrl}
                 likes={likes}
